@@ -1,0 +1,23 @@
+<header class="header">
+  <h1>Catálogo</h1>
+  <p>Productos en stock: {{ productos.length }}</p>
+</header>
+
+@if (productos.length === 0) {
+  <p>Cargando productos...</p>
+} @else {
+  <section class="grid">
+    @for (p of productos; track p.id) {
+      <div class="producto-card">
+        <img 
+          [src]="p.imageUrl || 'https://placehold.co/300x200?text=Sin+imagen'" 
+          [alt]="p.name"
+        />
+        <h2>{{ p.name }}</h2>
+        <p>{{ p.description }}</p>
+        <p>Precio: ${{ p.price }}</p>
+        <p>{{ p.inStock ? 'En stock' : 'Sin stock' }}</p>
+      </div>
+    }
+  </section>
+}
